@@ -6,5 +6,6 @@ export interface IArticle {
   postId: number;
   name: string;
   date: string;
+  content: string;
   comments: IComment[];
 }
