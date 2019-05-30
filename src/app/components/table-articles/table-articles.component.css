@@ -1,0 +1,13 @@
+.table th, .table td {
+    border-top: 0px;
+    border-bottom: 0px;
+}
+.left-border {
+    border-left: #343a40 solid 2px;
+}
+.full-border {
+    border: #343a40 solid 2px;
+}
+.point {
+    cursor: pointer;
+}

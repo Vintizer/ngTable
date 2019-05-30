@@ -1,35 +1,35 @@
-import { ArticleComponent } from "./../article/article.component";
-import { Component, OnDestroy } from "@angular/core";
-import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
+import { ArticleComponent } from './../article/article.component';
+import { Component, OnDestroy } from '@angular/core';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
-import { ActivatedRoute, Router } from "@angular/router";
-import { Subject } from "rxjs";
-import { takeUntil } from "rxjs/operators";
+import { ActivatedRoute, Router, Params } from '@angular/router';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 
 @Component({
-  selector: "app-modal-comments-container",
-  template: ""
+  selector: 'app-modal-comments-container',
+  template: ''
 })
 export class ModalCommentsContainerComponent implements OnDestroy {
   public currentDialog: any = null;
-  private destroy: Subject<any> = new Subject<any>();
+  private destroy: Subject<boolean> = new Subject<boolean>();
 
   public constructor(private modalService: NgbModal, route: ActivatedRoute, router: Router) {
-    route.params.pipe(takeUntil(this.destroy)).subscribe(params => {
+    route.params.pipe(takeUntil(this.destroy)).subscribe((params: Params) => {
       this.currentDialog = this.modalService.open(ArticleComponent, { centered: true });
       this.currentDialog.componentInstance.articleId = params.id;
       this.currentDialog.result.then(
         result => {
-          router.navigateByUrl("/");
+          router.navigateByUrl('/');
         },
         reason => {
-          router.navigateByUrl("/");
+          router.navigateByUrl('/');
         }
       );
     });
   }
 
   ngOnDestroy() {
-    this.destroy.next();
+    this.destroy.next(true);
   }
 }

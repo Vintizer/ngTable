@@ -1,24 +1,25 @@
-import { HttpClient } from "@angular/common/http";
-import { Injectable } from "@angular/core";
-import { Observable, throwError, Subject, BehaviorSubject } from "rxjs";
-import { catchError, map, pluck, tap, filter } from "rxjs/operators";
+import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { BehaviorSubject, Observable, throwError } from 'rxjs';
+import { catchError, filter, map } from 'rxjs/operators';
 
-import { IArticle } from "./../models/articles.models";
+import { IArticle } from './../models/articles.models';
 
 @Injectable({
-  providedIn: "root"
+  providedIn: 'root'
 })
-export class DataServiceService {
+export class DataService {
   public articlesSubject: BehaviorSubject<IArticle[]> = new BehaviorSubject([]);
   public articles$: Observable<IArticle[]> = this.articlesSubject.asObservable();
 
   public constructor(private http: HttpClient) {
     this.http
-      .get("assets/fakeData.json")
+      .get('assets/fakeData.json')
       .pipe(
         map(
           (data: { posts: IArticle[] }) => data.posts,
           catchError((err: any) => {
+            //TODO err view
             console.log(err);
             return throwError(err);
           })

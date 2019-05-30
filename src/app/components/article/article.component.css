@@ -1,0 +1,30 @@
+.modal-ok {
+    margin-top: -38px;
+    z-index: 5;
+    background-color: #fff;
+}
+.modal-ok:hover {
+    background-color: #343a40;
+}
+.table th, .table td {
+    border-top: 0px;
+    border-bottom: 0px;
+}
+.full-border {
+    border: #343a40 solid 2px;
+}
+.left-border {
+    border-left: #343a40 solid 2px;
+}
+.top-border {
+    border-top: #343a40 solid 2px;
+}
+.bot-border {
+    border-bottom: #343a40 solid 2px;
+}
+.shadowed {
+    box-shadow: 5px 5px 1px ;
+}
+.point {
+    cursor: pointer;
+}
