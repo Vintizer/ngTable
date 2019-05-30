@@ -1,7 +1,12 @@
 <table class="table table-striped table-sm full-border">
   <thead>
     <tr>
-      <th scope="col">Article Title</th>
+      <th scope="col" class="d-flex justify-content-between">
+        <div>
+          Article Title
+        </div>
+        <i class="fas fa-sort-up"></i>
+      </th>
       <th scope="col" class="left-border">Content</th>
       <th scope="col" class="left-border">Comments</th>
       <th scope="col" class="left-border">Actions</th>
@@ -9,8 +14,8 @@
   </thead>
   <tbody>
     <tr *ngFor="let article of articles">
-      <td scope="row" class="left-border">{{ article.name || "Empty name"}}</td>
-      <td class="left-border">{{ article.content || "Empty content"}}</td>
+      <td scope="row" class="left-border">{{ article.name || "Empty name" }}</td>
+      <td class="left-border">{{ article.content || "Empty content" }}</td>
       <td class="left-border">{{ article.comments?.length || 0 }}</td>
       <td class="left-border">
         <h3 class=" d-flex justify-content-around">
