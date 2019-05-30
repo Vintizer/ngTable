@@ -10,7 +10,7 @@ import { IArticle } from "./../models/articles.models";
 })
 export class DataServiceService {
   public articlesSubject: BehaviorSubject<IArticle[]> = new BehaviorSubject([]);
-  public articles$ = this.articlesSubject.asObservable();
+  public articles$: Observable<IArticle[]> = this.articlesSubject.asObservable();
 
   public constructor(private http: HttpClient) {
     this.http
@@ -22,8 +22,7 @@ export class DataServiceService {
             console.log(err);
             return throwError(err);
           })
-        ),
-        tap(console.log)
+        )
       )
       .subscribe((articles: IArticle[]) => this.articlesSubject.next(articles));
   }
@@ -37,5 +36,20 @@ export class DataServiceService {
     const curArticles: IArticle[] = this.articlesSubject.getValue();
     const filteredArticles: IArticle[] = curArticles.filter((article: IArticle) => article.postId !== id);
     this.articlesSubject.next(filteredArticles);
+  }
+  public removeComment(id: number, index: number): void {
+    const curArticles: IArticle[] = this.articlesSubject.getValue();
+    const curArticleIndex: number = curArticles.findIndex((article: IArticle) => article.postId === id);
+    const curArticle: IArticle = curArticles[curArticleIndex];
+    const newArticle: IArticle = {
+      ...curArticle,
+      comments: [...curArticle.comments.slice(0, index), ...curArticle.comments.slice(index + 1)]
+    };
+    const newArticles: IArticle[] = [
+      ...curArticles.slice(0, curArticleIndex),
+      newArticle,
+      ...curArticles.slice(curArticleIndex + 1)
+    ];
+    this.articlesSubject.next(newArticles);
   }
 }

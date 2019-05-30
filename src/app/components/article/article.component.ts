@@ -9,9 +9,14 @@ import { Component, Input, OnInit } from "@angular/core";
 })
 export class ArticleComponent implements OnInit {
   public article: IArticle;
+  @Input() public articleId: string;
+
   public constructor(private ds: DataServiceService) {}
 
   public ngOnInit(): void {
-    this.ds.getArticleById(3).subscribe((article: IArticle) => (this.article = article));
+    this.ds.getArticleById(Number(this.articleId)).subscribe((article: IArticle) => (this.article = article));
+  }
+  public removeComment(id: number, commentIndex: number): void {
+    this.ds.removeComment(id, commentIndex);
   }
 }
