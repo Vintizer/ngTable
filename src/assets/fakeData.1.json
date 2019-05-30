@@ -2,20 +2,41 @@
   "posts": [
     {
       "postId": 0,
+      "name": "laborum voluptate",
       "date": "12.08.2018",
-      "content": "Nulla est enim voluptate culpa ad ex nostrud."
+      "content": "Nulla est enim voluptate culpa ad ex nostrud.",
+      "comments": [
+        {
+          "date": "15.10.2014",
+          "text": "Ullamco ad ullamco officia culpa nostrud dolore pariatur proident labore."
+        },
+        {
+          "date": "27.04.2018",
+          "text": "Irure commodo eu est quis dolor enim exercitation."
+        },
+        {
+          "date": "05.04.2018",
+          "text": "Laborum ullamco labore labore consequat veniam fugiat incididunt sint culpa laborum."
+        },
+        {
+          "date": "17.05.2017",
+          "text": "Fugiat sunt culpa occaecat reprehenderit non et labore ullamco."
+        }
+      ]
     },
     {
       "postId": 1,
       "name": "adipisicing ea",
       "date": "21.10.2017",
+      "content": "Dolor laboris aliqua dolore ipsum fugiat voluptate commodo laborum aute magna.",
       "comments": [
         {
           "date": "24.04.2015",
           "text": "Aliquip nulla eu sint adipisicing est nisi mollit sit esse."
         },
         {
-          "date": "21.04.2015"
+          "date": "21.04.2015",
+          "text": "Ad laborum fugiat excepteur adipisicing amet labore Lorem."
         },
         {
           "date": "15.03.2016",

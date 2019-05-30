@@ -15,7 +15,7 @@
       </thead>
       <tbody>
         <tr *ngFor="let comment of article?.comments; index as i">
-          <td scope="row">{{ comment.text }}</td>
+          <td scope="row">{{ comment.text || "Empty comment"}}</td>
           <td class="left-border">
             <h2 class=" d-flex justify-content-center">
               <i (click)="removeComment(article.postId, i)" class="point fas fa-times-circle"></i>

@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, throwError } from 'rxjs';
 import { catchError, filter, map } from 'rxjs/operators';
@@ -16,16 +16,21 @@ export class DataService {
     this.http
       .get('assets/fakeData.json')
       .pipe(
-        map(
-          (data: { posts: IArticle[] }) => data.posts,
-          catchError((err: any) => {
-            //TODO err view
-            console.log(err);
-            return throwError(err);
-          })
-        )
+        map((data: { posts: IArticle[] }) => data.posts),
+        catchError((err: any) => {
+          if (err instanceof HttpErrorResponse) {
+            alert(`Sorry, ${err.message}`);
+          }
+          return throwError(err);
+        })
       )
-      .subscribe((articles: IArticle[]) => this.articlesSubject.next(articles));
+      .subscribe((articles: IArticle[]) => {
+        if (articles) {
+          this.articlesSubject.next(articles);
+        } else {
+          alert('Sorry, file has wrong structure');
+        }
+      });
   }
   public getArticleById(id: number): Observable<IArticle> {
     return this.articles$.pipe(

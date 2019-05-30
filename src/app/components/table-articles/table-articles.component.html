@@ -9,9 +9,9 @@
   </thead>
   <tbody>
     <tr *ngFor="let article of articles">
-      <td scope="row" class="left-border">{{ article.name }}</td>
-      <td class="left-border">{{ article.content }}</td>
-      <td class="left-border">{{ article.comments.length }}</td>
+      <td scope="row" class="left-border">{{ article.name || "Empty name"}}</td>
+      <td class="left-border">{{ article.content || "Empty content"}}</td>
+      <td class="left-border">{{ article.comments?.length || 0 }}</td>
       <td class="left-border">
         <h3 class=" d-flex justify-content-around">
           <i (click)="showComments(article.postId)" class="point fas fa-comment"></i>

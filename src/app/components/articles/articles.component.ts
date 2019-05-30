@@ -9,7 +9,6 @@ import { takeUntil } from 'rxjs/operators';
   templateUrl: './articles.component.html',
   styleUrls: ['./articles.component.css']
 })
-
 export class ArticlesComponent implements OnInit, OnDestroy {
   public articles: IArticle[];
   public commentsLength: number;
@@ -20,7 +19,10 @@ export class ArticlesComponent implements OnInit, OnDestroy {
   public ngOnInit(): void {
     this.ds.articles$.pipe(takeUntil(this.destroy)).subscribe((articles: IArticle[]) => {
       this.articles = articles;
-      this.commentsLength = articles.reduce((acc: number, val: IArticle) => acc + val.comments.length, 0);
+      this.commentsLength = articles.reduce(
+        (acc: number, val: IArticle) => (val.comments ? acc + val.comments.length : acc),
+        0
+      );
     });
   }
   public ngOnDestroy(): void {
